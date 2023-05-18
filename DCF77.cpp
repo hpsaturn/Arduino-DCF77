@@ -309,15 +309,15 @@ bool DCF77::processBuffer(void) {
  * Get most recently received time 
  * Note, this only returns an time once, until the next update
  */
-time_t DCF77::getTime(void)
-{
-	if (!receivedTimeUpdate()) {
-		return(0);
-	} else {
-		// Send out time, taking into account the difference between when the DCF time was received and the current time
-		time_t currentTime =latestupdatedTime + (now() - processingTimestamp);
-		return(currentTime);
-	}
+time_t DCF77::getTime(void) {
+  if (!receivedTimeUpdate()) {
+    return (0);
+  } else {
+    // Send out time, taking into account the difference between when the DCF time was received and the current time
+    time_t currentTime = latestupdatedTime + (now() - processingTimestamp);
+    if (cb != nullptr) cb->onTimeUpdate(currentTime);
+    return (currentTime);
+  }
 }
 
 /**
