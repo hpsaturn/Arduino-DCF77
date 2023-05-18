@@ -105,7 +105,6 @@ public:
     virtual ~DCF77EventsCallback () {};
     virtual void onParityError();
     virtual void onBufferMsg(const char * msg);
-    virtual void onTimeUpdate(time_t DCFtime);
     virtual void onTimeUpdateMsg(const char * msg);
     virtual void onSignal(unsigned char signal);
 };

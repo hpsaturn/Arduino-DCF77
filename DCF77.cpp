@@ -315,7 +315,6 @@ time_t DCF77::getTime(void) {
   } else {
     // Send out time, taking into account the difference between when the DCF time was received and the current time
     time_t currentTime = latestupdatedTime + (now() - processingTimestamp);
-    if (cb != nullptr) cb->onTimeUpdate(currentTime);
     return (currentTime);
   }
 }
